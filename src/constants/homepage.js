@@ -74,3 +74,53 @@ export const stats = [
   },
 ];
 
+export const testimonials = [
+  {
+    id: 1,
+    name: "Kwame Osei",
+    title: "Intuitive Website Design",
+    review:
+      "Navigating this website is a pleasure! The user interface is beautifully designed, and I appreciate the seamless experience. It's my preferred platform for exploring the digital world.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Nia Abimbola",
+    title: "Exceptional User Experience",
+    review:
+      "I had an outstanding experience using this website. The design is modern, and I could effortlessly explore different features. The attention to detail helped me engage effortlessly.",
+    rating: 4,
+  },
+  {
+    id: 3,
+    name: "Sekou Diop",
+    title: "Innovative Design Solutions",
+    review:
+      "Whether I'm browsing on my phone or desktop, this website offers innovative design solutions. The creative approach ensures a visually appealing and user-friendly experience.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Aisha Kamara",
+    title: "Responsive Web Development",
+    review:
+      "I reached out with a development query, and the team was quick to respond. Their expertise and collaboration made me confident in choosing this platform for my projects.",
+    rating: 4,
+  },
+  {
+    id: 5,
+    name: "Chijioke Nwachukwu",
+    title: "Dependable Design Platform",
+    review:
+      "In my experience with design tools, this platform stands out for its reliability. The features are robust, and the design process is smooth. Highly recommended for fellow creatives.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Fatou Traoré",
+    title: "Efficient UX Planning",
+    review:
+      "Planning user experiences has become much more efficient with this platform. The thoughtful interfaces and detailed design descriptions make it easy to create engaging digital products.",
+    rating: 4,
+  },
+];

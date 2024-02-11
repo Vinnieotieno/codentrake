@@ -5,7 +5,7 @@ import React from "react";
 
 const FAQ = () => {
   return (
-    <div className="my-5 py-20 bg-brandLighter bg-opacity-40 flex flex-col items-center text-brandDark ">
+    <div className="my-5 py-20 bg-brandLighter bg-opacity-40 flex flex-col items-center text-brandDark " id="faq">
       <h1 className="font-bold text-4xl mb-8  text-center  tracking-wide "> Discover Why <br /> We're Your Ideal Tech Partner
       </h1>
 

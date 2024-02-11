@@ -1,12 +1,12 @@
 import React from 'react'
 import Hero from './components/Hero'
-import Services from './components/Services'
+import Contact from './components/Contact'
 
 const index = () => {
   return (
-    <div>
-      <Hero />
-      <Services/>
+      <div>
+          <Hero />
+          <Contact/>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import Projects from './component/Projects'
 import Languages from './component/Languages'
 import CallToAction from './component/CallToAction'
 import Stats from './component/Stats'
+import Testimonials from './component/Testimonials'
 
 const index = () => {
   return (
@@ -11,6 +12,7 @@ const index = () => {
       <Hero />
       <Projects />
       <Languages />
+      <Testimonials/>
       <CallToAction />
       <Stats/>
     </div>
