@@ -1,4 +1,7 @@
 import project from "@/assets/project.png";
+import project3 from "@/assets/project3.png";
+import project2 from "@/assets/project2.png";
+import project1 from "@/assets/project1.png";
 import css from "@/assets/css.png";
 import docker from "@/assets/docker.png";
 import figma from "@/assets/figma.png";
@@ -15,17 +18,17 @@ import CallToAction from "@/assets/calltoaction.png";
 
 export const projects = [
   {
-    img: project,
-    name: "AirBnB",
-    desc: "Is an online marketplace that connects people who want to rent out their homes with people looking for short-term accommodations. It has transformed the hospitality industry by allowing individuals to monetize their living spaces and providing travelers with diverse lodging options.",
+    img: project1,
+    name: "Ecommerce",
+    desc: "The application offers a seamless platform for customers to explore and purchase a diverse range of branded shoes, combining style and quality. With an intuitive user interface, users can effortlessly browse through an extensive collection of shoes.",
   },
   {
-    img: project,
-    name: "Online Learning Platform",
-    desc: " Developed a comprehensive e-learning platform with features like video lectures, quizzes, and progress tracking. Increased accessibility to education by providing a user-friendly interface for students and instructors",
+    img: project2,
+    name: "Movie Application",
+    desc: " The web application serves as a comprehensive platform for users to explore the latest movies and shows effortlessly. Integrates various databases and APIs to fetch latest data and update the user interface accordingly.",
   },
   {
-    img: project,
+    img: project3,
     name: "Inventory Management System",
     desc: " Designed and implemented an inventory management system for a retail client. Streamlined operations by automating inventory tracking, order processing, and generating real-time reports for better decision-making.",
   },

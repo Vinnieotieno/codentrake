@@ -37,7 +37,8 @@ const Projects = () => {
                   <h1 className="text-lg lg:text-xl font-bold py-2 ">{project.name}</h1>
                   <p className="px-2 mx-auto text-sm">{project.desc}</p>
                   <div className="flex justify-end mt-3 mr-2">
-                    <Button className="bg-brandDark " variant="">See Project</Button>
+                    <Button 
+                      className="bg-brandDark hover:bg-green-800 hover:text-white" variant="">See Project</Button>
                   </div>
                 </div>
               </CarouselItem>
