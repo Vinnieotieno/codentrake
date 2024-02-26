@@ -21,31 +21,37 @@ export const projects = [
     img: project1,
     name: "Ecommerce",
     desc: "The application offers a seamless platform for customers to explore and purchase a diverse range of branded shoes, combining style and quality. With an intuitive user interface, users can effortlessly browse through an extensive collection of shoes.",
+    link: 'https://shopperslide.netlify.app/'
   },
   {
     img: project2,
     name: "Movie Application",
     desc: " The web application serves as a comprehensive platform for users to explore the latest movies and shows effortlessly. Integrates various databases and APIs to fetch latest data and update the user interface accordingly.",
+    link: 'https://moviesdiscovery.netlify.app/'
   },
   {
     img: project3,
     name: "Inventory Management System",
     desc: " Designed and implemented an inventory management system for a retail client. Streamlined operations by automating inventory tracking, order processing, and generating real-time reports for better decision-making.",
+    link: 'https://jeilo.netlify.app/'
   },
   {
     img: project,
     name: "Health Monitoring App",
     desc: "Created a mobile application for health monitoring, enabling users to track their fitness goals, nutrition intake, and physical activities. Integrated wearable device data for a seamless and personalized user experience.",
+    link: ''
   },
   {
     img: project,
     name: "Financial Analytics Dashboard",
     desc: " Developed a customizable analytics dashboard for a financial institution, providing insights into key performance indicators, market trends, and risk analysis. Enhanced decision-making capabilities through data visualization.",
+    link: ''
   },
   {
     img: project,
     name: "Smart Home Automation System",
     desc: "Engineered a smart home automation system, integrating IoT devices for centralized control of lighting, security, and energy consumption. Enhanced user convenience, energy efficiency, and security through remote monitoring and automation.",
+    link: ''
   },
 ];
 
