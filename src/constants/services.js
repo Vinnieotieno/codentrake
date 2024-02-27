@@ -17,7 +17,7 @@ export const services = [
         desc: "Gain valuable insights and strategic guidance through our consulting services.",
       },
       {
-        title: "Web Maintainance",
+        title: "Web Mainteinance",
         desc: "Ensure the ongoing success of your website with our maintenance and optimization services.",
       },
     ],

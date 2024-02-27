@@ -35,7 +35,7 @@ const Projects = () => {
                 <img src={project.img} className="rounded-t-2xl w-full  h-48 object-cover" alt="rollinscode.com" />
                 <div className="text-center pb-5 bg-brandLighter bg-opacity-40 text-brandDark">
                   <h1 className="text-lg lg:text-xl font-bold py-2 ">{project.name}</h1>
-                  <p className="px-2 mx-auto text-sm">{project.desc}</p>
+                  <p className="px-2 mx-auto text-xs text-justify">{project.desc}</p>
                   <div className="flex justify-end mt-3 mr-2">
                     <Button className="bg-brandDark hover:bg-green-800 hover:text-white" variant="">
                         <a href={project.link} target="_blank">View Project</a>
