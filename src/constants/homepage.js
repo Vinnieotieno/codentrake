@@ -6,6 +6,9 @@ import css from "@/assets/css.png";
 import docker from "@/assets/docker.png";
 import figma from "@/assets/figma.png";
 import git from "@/assets/git.png";
+import java from "@/assets/java.png";
+import php from "@/assets/php.png";
+import python from "@/assets/python.png";
 import html from "@/assets/html.png";
 import js from "@/assets/javascript.png";
 import mongo from "@/assets/mongodb.png";
@@ -58,7 +61,7 @@ export const projects = [
 export const languages = {
   title: "Our Proficient Programming Languages",
   desc: "We are well-versed in a diverse set of programming languages, enabling us to deliver versatile and high-quality solutions",
-  languages: [css, docker, figma, git, html, js, , mongo, node, react, redux, tailwind, typescript],
+  languages: [css, docker, python, figma, java, php, git, html, js, , mongo, node, react, redux, tailwind, typescript],
 };
 export const calltoAction = {
   text: "Uncertain about the tech solutions that best suit your business? Partner with Vigilux Corp for strategic consultations",

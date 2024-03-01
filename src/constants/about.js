@@ -19,9 +19,34 @@ export const faqs = [
       "Vigilux Corporation brings a wealth of agency experience, founded by visionary individuals dedicated to driving progress and reliability in the tech landscape. Our extensive experience in web development, UI/UX design, and application development positions us as a reliable partner for businesses seeking sustained excellence in the digital realm.",
   },
   {
+    question: "What services does vigilux offer?",
+    answer:
+      "We specialize in creating custom websites and mobile apps, offering search engine optimization (SEO) strategies, and providing expert IT consultation for businesses looking to enhance their digital presence and operational efficiency.",
+  },
+  {
+    question: "How does the process of creating a website or app begin?",
+    answer:
+      "The process starts with a detailed consultation to understand your business goals, target audience, and specific requirements, followed by planning, design, development, testing, and deployment phases, ensuring a tailored solution that meets your needs.",
+  },
+  {
+    question: "How long does it take to develop a website or app?",
+    answer:
+      "The timeline varies significantly based on the project's complexity, features, and revisions required. A basic website might take 4-6 weeks, while a more complex app could take several months to develop and test thoroughly.",
+  },
+  {
     question: "How does Vigilux prioritize empathy and simplicity in its solutions?",
     answer:
       "Empathy is a cornerstone of our training, encouraging students to understand end-users' needs deeply. We prioritize creating user-friendly and accessible software solutions by emphasizing simplicity in design and functionality. This commitment to empathy and simplicity ensures that our solutions resonate with users and provide an exceptional user experience.",
+  },
+  {
+    question: "Can you help improve my website’s search engine ranking?",
+    answer:
+      "Yes, we offer comprehensive SEO services designed to improve your website's visibility and ranking on search engines. This includes keyword research, on-page optimization, content strategy, and technical SEO, tailored to your specific industry and target audience.",
+  },
+  {
+    question: "Do you provide support and maintenance after the project is completed?",
+    answer:
+      "Absolutely, we offer ongoing support and maintenance packages to ensure your website or app remains up-to-date, secure, and continues to function smoothly as your business grows and evolves.",
   },
 ];
 
