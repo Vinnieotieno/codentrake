@@ -4,7 +4,7 @@ import Projects from './component/Projects'
 import Languages from './component/Languages'
 import CallToAction from './component/CallToAction'
 import Stats from './component/Stats'
-import Testimonials from './component/Testimonials'
+import Testimonials from '../../components/Testimonials'
 
 const index = () => {
   return (

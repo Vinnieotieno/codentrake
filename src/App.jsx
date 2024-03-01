@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Homepage from '@/pages/Homepage'
+import LandingPage from "@/pages/LandingPage";
 import About from '@/pages/About'
 import Service from '@/pages/Services'
 import Contact from "@/pages/Contact";
@@ -14,7 +15,8 @@ function App() {
         <Navbar />
         <div className="content flex-1">
           <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route path="/" element={<LandingPage/>}/>
+            <Route path="/Portfolio" element={<Homepage />} />
             <Route path="/about-us" element={<About />} />
             <Route path="/services" element={<Service />} />
             <Route path="/contact" element={<Contact />} />

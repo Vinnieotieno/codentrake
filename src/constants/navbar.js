@@ -5,7 +5,8 @@ export const navItems = [
   { link: "Home", path: "/" },
   { link: "About Us", path: "/about-us" },
   { link: "Services", path: "/services" },
-  { link: "Contact Us", path: "/contact" },
+  { link: "Portfolio", path: "/portfolio" },
+  { link: "Let's Talk", path: "/contact" },
 ];
 
 export const socials = [
