@@ -4,6 +4,7 @@ import Homepage from '@/pages/Homepage'
 import LandingPage from "@/pages/LandingPage";
 import About from '@/pages/About'
 import Service from '@/pages/Services'
+import BackToTopButton from './components/top';
 import Contact from "@/pages/Contact";
 import Footer from './components/Footer'
 
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <div className="flex flex-col min-h-screen main-container">
         <Navbar />
+        <BackToTopButton />
         <div className="content flex-1">
           <Routes>
             <Route path="/" element={<LandingPage/>}/>

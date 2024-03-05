@@ -22,7 +22,7 @@ import CallToAction from "@/assets/calltoaction.png";
 export const projects = [
   {
     img: project1,
-    name: "Ecommerce",
+    name: "Ecommerce App",
     desc: "The application offers a seamless platform for customers to explore and purchase a diverse range of branded shoes, combining style and quality. With an intuitive user interface, users can effortlessly browse through an extensive collection of shoes.",
     link: 'https://shopperslide.netlify.app/'
   },
@@ -90,6 +90,8 @@ export const testimonials = [
   {
     id: 1,
     name: "Kwame Osei",
+    postion: 'product designer',
+    image: 'https://plus.unsplash.com/premium_photo-1661255424747-6ee7fd8d86f6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: "Intuitive Website Design",
     review:
       "Navigating this website is a pleasure! The user interface is beautifully designed, and I appreciate the seamless experience. It's my preferred platform for exploring the digital world.",
@@ -98,6 +100,8 @@ export const testimonials = [
   {
     id: 2,
     name: "Nia Abimbola",
+    postion: 'Finance Manager',
+    image: 'https://images.unsplash.com/photo-1529758146491-1e11fd721f77?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGFmcmljYW4lMjBwcm9maWxlfGVufDB8fDB8fHww',
     title: "Exceptional User Experience",
     review:
       "I had an outstanding experience using this website. The design is modern, and I could effortlessly explore different features. The attention to detail helped me engage effortlessly.",
@@ -106,6 +110,8 @@ export const testimonials = [
   {
     id: 3,
     name: "Sekou Diop",
+    postion: 'Enrepreneur',
+    image: 'https://images.unsplash.com/photo-1546728150-b3cbeddb6f6d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: "Innovative Design Solutions",
     review:
       "Whether I'm browsing on my phone or desktop, this website offers innovative design solutions. The creative approach ensures a visually appealing and user-friendly experience.",
@@ -113,7 +119,9 @@ export const testimonials = [
   },
   {
     id: 4,
-    name: "Aisha Kamara",
+    name: "Arnold Claus",
+    postion: 'CEO Goodtrip Limited',
+    image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: "Responsive Web Development",
     review:
       "I reached out with a development query, and the team was quick to respond. Their expertise and collaboration made me confident in choosing this platform for my projects.",
@@ -121,7 +129,9 @@ export const testimonials = [
   },
   {
     id: 5,
-    name: "Chijioke Nwachukwu",
+    name: "Nicolene Lorento",
+    postion: 'Entrepreneur',
+    image: 'https://images.unsplash.com/photo-1649768453000-07c369a51b36?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: "Dependable Design Platform",
     review:
       "In my experience with design tools, this platform stands out for its reliability. The features are robust, and the design process is smooth. Highly recommended for fellow creatives.",
@@ -130,6 +140,8 @@ export const testimonials = [
   {
     id: 6,
     name: "Fatou Traoré",
+    postion: 'CEO LeTT',
+    image: 'https://images.unsplash.com/photo-1556557286-bf3be5fd9d06?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: "Efficient UX Planning",
     review:
       "Planning user experiences has become much more efficient with this platform. The thoughtful interfaces and detailed design descriptions make it easy to create engaging digital products.",
