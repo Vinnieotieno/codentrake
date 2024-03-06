@@ -9,9 +9,12 @@ const Work = () => {
   return (
     <div className="bg-brandLighter bg-opacity-40 text-brandDark py-10">
       <Container className="">
-        <span className=" font-bold text-2xl capitalize mb-3">our work</span>
+        <div className="flex justify-between items-center">
+          <div className="">
+            <span className=" font-bold text-2xl capitalize mb-3">our work</span>
             <h2 className="text-md font-semibold mb-5">Case Studies Are Conducted By Our Team</h2>
-        <div className="absolute right-0 sm:top-24 flex justify-end sm:pr-16 pr-6">
+          </div>
+
           <Link to={"/portfolio"} className="flex items-center hover:underline">
             <span className="mr-2">Explore all Projects</span>
             <ArrowRight />
@@ -26,9 +29,7 @@ const Work = () => {
                   <CardTitle>{project.name}</CardTitle>
                   <CardDescription>{project.desc}</CardDescription>
                 </CardHeader>
-                <CardFooter>
-                  
-                </CardFooter>
+                <CardFooter></CardFooter>
               </Card>
             </Link>
           ))}
