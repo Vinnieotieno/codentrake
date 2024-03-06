@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronUp } from 'lucide-react';
+import whatsapp from "@/assets/whatsapp.svg";
 
 const BackToTopButton = () => {
   const scrollToTop = () => {
@@ -10,13 +11,14 @@ const BackToTopButton = () => {
   };
 
   return (
-    <button
-      className="fixed p-2 sm:p-3 flex bottom-[10%] right-1 rounded-full bg-green-800 z-[1000]"
-      onClick={scrollToTop}
-      title="Back to Top"
-    >
-      <ChevronUp className="text-white" />
-    </button>
+    <div className="flex flex-col space-y-5 items-center fixed bottom-10 right-2 z-[9999]">
+      <a href="https://wa.me/254746179246" target="_blank" className=" rounded-full">
+        <img src={whatsapp} width={70} height={70} alt="rollinscodes.com" />
+      </a>
+      <button className="" onClick={scrollToTop} title="Back to Top">
+        <ChevronUp className="text-white rounded-full bg-brandMedium w-10 h-10" />
+      </button>
+    </div>
   );
 };
 

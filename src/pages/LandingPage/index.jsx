@@ -6,7 +6,8 @@ import Testimonial from './sections/Testimonial'
 import Plan from './sections/Plan'
 import Howworks from './sections/How-Works'
 import Socials from './sections/Socials'
-import CallToAction from './sections/CallToAction'
+import CallToAction from '@/components/CallToAction'
+import Stats from '@/components/Stats'
 
 const index = () => {
   return (
@@ -18,7 +19,8 @@ const index = () => {
       <Testimonial/>
       <Plan/>
       <Howworks/>
-      <CallToAction/>
+      <CallToAction />
+      <Stats/>
     </div>
   )
 }
