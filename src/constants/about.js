@@ -77,11 +77,11 @@ export const team = [
     desc: "As a full-stack developer, I'm on a perpetual quest for innovation and excellence. Ambitious by nature, I thrive in the dynamic world of coding, constantly seeking new challenges to tackle. Beyond the screen, I'm refreshingly simple",
     socials: [
       {
-        link: "https://www.linkedin.com/in/rollins-shadrack-b8703a221/",
+        link: "",
         img: linkedImage,
       },
       {
-        link: "https://github.com/Rollins-Shadrack",
+        link: "",
         img: github,
       },
       {
@@ -93,15 +93,15 @@ export const team = [
   {
     name: "Vincent Otieno",
     img: "https://media.istockphoto.com/id/1945263845/photo/happy-and-confident-young-african-american-man-learning-in-library.jpg?s=612x612&w=0&k=20&c=CFxE5GwRQzNDCKb-QCbrnOSidGDqFES66H4-wIy4tNc=",
-    position: "UI/UX Designer",
+    position: "Web Designer, SEO Specialist",
     desc: "I find joy in the simplicity of design. I am a UI/UX designer with a passion for crafting engaging and user-centric digital experiences. With a keen eye for detail and a commitment to simplicity, I bring a unique blend of creativity and practicality to every project",
     socials: [
       {
-        link: "",
+        link: "https://www.linkedin.com/in/vincent-otieno-4980691b0/",
         img: linkedImage,
       },
       {
-        link: "",
+        link: "https://github.com/Vinnieotieno",
         img: github,
       },
       {

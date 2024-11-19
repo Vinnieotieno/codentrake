@@ -12,7 +12,7 @@ const BackToTopButton = () => {
 
   return (
     <div className="flex flex-col space-y-5 items-center fixed bottom-10 right-2 z-[9999]">
-      <a href="https://wa.me/254746179246" target="_blank" className=" rounded-full">
+      <a href="https://wa.me/254797398004" target="_blank" className=" rounded-full">
         <img src={whatsapp} width={70} height={70} alt="rollinscodes.com" />
       </a>
       <button className="" onClick={scrollToTop} title="Back to Top">

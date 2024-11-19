@@ -47,7 +47,7 @@ export const plans = [
         {"name": "Custom Chatbot", "icon": "CheckCircle"},
         {"name": "Website Strategy", "icon": "CheckCircle"},
       ],
-      "buttonText": "Get Started",
+      "buttonText": "Get Started 0797398004",
       "backgroundColor": "bg-yellow-200"
     }
   ]

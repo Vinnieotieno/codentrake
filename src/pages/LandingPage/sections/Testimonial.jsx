@@ -1,71 +1,97 @@
-import React from 'react'
-import { Star } from 'lucide-react'
-import { testimonials } from '@/constants/homepage';
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import Container from '@/components/Container';
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
+import { testimonials } from '@/constants/homepage'
+import Container from '@/components/Container'
 
-
-export function TestimonialCarousel({ testimonials }) {
-  return (
-    <Carousel className="w-full max-w-6xl mx-auto">
-      <CarouselContent>
-        {testimonials.map((testimonial, index) => (
-          <CarouselItem key={testimonial.id}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex flex-col bg-brandLighter bg-opacity-40 text-brandDark py-5">
-                  <p className="text-md sm:text-2xl md:text-2xl text-gray-900 font-semibold mb-10">&ldquo;{testimonial.review}&rdquo;</p>
-                  <div className="flex justify-start">
-                    <img className="block sm:w-20 sm:h-20 w-12 h-12 rounded-full object-cover" src={testimonial.image} alt="" />
-                    <div className="flex flex-col gap-1 ml-5">
-                      <span className="block text-lg font-semibold leading-none mb-1">{testimonial.name}</span>
-                      <span className="block sm:text-sm text-xs font-semibold leading-none mb-1">{testimonial.postion}</span>
-                      <div className="flex gap-1 mb-4 sm:pt-0 pt- justify-center">
-                        {[...Array(5)].map((_, i) => (
-                          <div class="flex gap-1 justify-start">
-                            <Star size={13} key={i} className="text-yellow-500" />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
-  );
-}
+const TestimonialCard = ({ testimonial }) => (
+  <motion.div
+    className="bg-white rounded-lg shadow-xl p-6 md:p-8"
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 0.9 }}
+    transition={{ duration: 0.5 }}
+  >
+    <p className="text-lg md:text-xl text-gray-800 font-medium mb-6">"{testimonial.review}"</p>
+    <div className="flex items-center">
+      <img className="w-12 h-12 rounded-full object-cover mr-4" src={testimonial.image} alt={testimonial.name} />
+      <div>
+        <h3 className="font-semibold text-lg">{testimonial.name}</h3>
+        <p className="text-gray-600">{testimonial.position}</p>
+      </div>
+    </div>
+    <div className="flex mt-4">
+      {[...Array(5)].map((_, i) => (
+        <Star key={i} className="text-yellow-400" size={16} fill={i < testimonial.rating ? "currentColor" : "none"} />
+      ))}
+    </div>
+  </motion.div>
+)
 
 const Testimonial = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const nextTestimonial = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
+  }
+
   return (
-    <section className="relative py-10 px-6 lg:pt-10 lg:pb-30 bg-brandLighter bg-opacity-40 text-brandDark overflow-hidden">
-        <Container>
-          <div className="flex flex-wrap -mx-4 items-center mb-10">
-            <div className="w-full px-4 lg:mb-0">
-              <span className="text-green-950 md:flex md:mb-6 lg:pt-8 justify-center font-bold text-xl capitalize">Testimonials</span>
-              <h1 className="font-heading text-3xl sm:text-4xl xs:text-6xl font-bold text-green-950 mb-4">
-                <span>What our clients</span>
-                <span className="font-serif text-orange-400 italic"> said</span>
-              </h1>
-              <p className="text-gray-700">We sersve clients from different levels and industries</p>
-            </div>
+    <section className="py-16 bg-gradient-to-b from-brandLighter to-white text-brandDark overflow-hidden">
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            We serve clients from different levels and industries. Here's what they have to say about our services.
+          </p>
+        </motion.div>
+
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            <TestimonialCard key={currentIndex} testimonial={testimonials[currentIndex]} />
+          </AnimatePresence>
+
+          <div className="absolute top-1/2 transform -translate-y-1/2 left-0 right-0">
+            <button
+              onClick={prevTestimonial}
+              className="absolute left-0 bg-white rounded-full p-2 shadow-md hover:bg-brandMedium hover:text-white transition-colors duration-300"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              onClick={nextTestimonial}
+              className="absolute right-0 bg-white rounded-full p-2 shadow-md hover:bg-brandMedium hover:text-white transition-colors duration-300"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
-          <TestimonialCarousel testimonials={testimonials} />
-        </Container>
+        </div>
+
+        <div className="flex justify-center mt-8">
+          {testimonials.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`w-3 h-3 rounded-full mx-1 ${
+                idx === currentIndex ? 'bg-brandDark' : 'bg-gray-300'
+              }`}
+              aria-label={`Go to testimonial ${idx + 1}`}
+            />
+          ))}
+        </div>
+      </Container>
     </section>
-  );
+  )
 }
 
 export default Testimonial
