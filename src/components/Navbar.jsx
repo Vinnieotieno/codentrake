@@ -1,100 +1,134 @@
-"use client";
-import { useEffect, useState } from "react";
-import logo from "@/assets/logo.png";
-import { MenuIcon } from "lucide-react";
+'use client'
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Link, useLocation } from "react-router-dom";
-import Container from "./Container";
-import { navItems, socials } from "@/constants/navbar";
+import React, { useState, useEffect } from "react";
+import { Menu, Phone, Mail } from 'lucide-react';
+
+const navItems = [
+  { link: "Home", path: "/" },
+  { link: "Services", path: "/services" },
+  { link: "About", path: "/about-us" },
+  { link: "Portfolio", path: "/portfolio" },
+  { link: "Contact", path: "/contact" },
+];
+
+const TopContactBar = () => {
+  return (
+    <div className="bg-gray-100 py-2 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between text-sm">
+        <div className="flex items-center space-x-4">
+          <a href="tel:+1234567890" className="flex items-center hover:text-gray-200">
+            <Phone className="h-4 w-4 mr-2" />
+            <span>+254 797 398 004</span>
+          </a>
+          <a href="mailto:info@codentrake.com" className="flex items-center hover:text-gray-200">
+            <Mail className="h-4 w-4 mr-2" />
+            <span>info@codentrake.com</span>
+          </a>
+        </div>
+        <button className="mt-2 sm:mt-0 bg-white text-blue-600 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200">
+          Request a Quote
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const Navbar = () => {
-  const [isSticky, setIsSticky] = useState(false);
-  const location = useLocation();
-  const pathname = location.pathname;
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [pathname, setPathname] = useState("/");
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    return () => {
-      window.addEventListener("scroll", handleScroll);
-    };
-  });
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
+
   return (
-    <header className="w-full bg-brandDark text-white md:bg-brandlighter fixed top-0 left-0 right-0 z-[999] main-container">
-      <nav className={`py-2  ${isSticky ? "sticky top-0 left-0 right-0 border bg-brandSlightDark text-white duration-300 z-[999]" : ""}`}>
-        <Container className="flex justify-between items-center text-base ">
-          <Link className="" href="/">
-            <img src={logo} className="h-12 w-20" />
-          </Link>
-
-          {/* Navbar items for large screens */}
-          <ul className="md:flex space-x-12 hidden cursor-pointer">
-            {navItems.map(({ link, path }) => (
-              <Link
-                key={path}
-                to={path}
-                className={`block text-base text-brandLighter hover:text-brandPrimary ${
-                  pathname === path && "font-medium text-brandLight"
-                }  whitespace-nowrap`}>
-                {link}
-              </Link>
-            ))}
-          </ul>
-
-          <div className="space-x-10 flex items-center">
-            {socials.map((social, idx) => (
-              <a key={idx} href={social.link} target="blank" className="md:flex hidden">
-                <img src={social.img} className="h-10 w-10 text-brandLighter" />
-              </a>
-            ))}
-
-            {/* menu btns */}
+    <header className="fixed w-full z-50">
+      <TopContactBar />
+      <nav
+        className={`bg-gradient-to-r from-blue-600 to-red-600 py-4 transition-all duration-300 ${
+          isScrolled ? "shadow-lg" : ""
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            <a href="/" className="flex-shrink-0">
+              <img src="/logo.png" alt="Codentrake" className="h-10 w-auto" />
+            </a>
+            <div className="hidden md:flex items-center space-x-8">
+              {navItems.map(({ link, path }) => (
+                <a
+                  key={path}
+                  href={path}
+                  className={`text-base font-medium transition-colors duration-200 ${
+                    pathname === path
+                      ? "text-white"
+                      : "text-gray-200 hover:text-white"
+                  }`}
+                >
+                  {link}
+                </a>
+              ))}
+             
+            </div>
             <div className="md:hidden">
-              <DropdownMenu className="">
-                <DropdownMenuTrigger asChild>
-                  <button className="focus:outline-none text-brandMedium focus:text-brandSecondDark">
-                    <MenuIcon className="h-10 w-10 " />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 mt-4 ">
-                  <DropdownMenuGroup>
-                    {navItems.map(({ link, path }) => (
-                      <DropdownMenuItem key={link}>
-                        <Link
-                          to={path}
-                          className={`block text-base text-brandDark hover:text-brandPrimary  whitespace-nowrap ${
-                            pathname === path && "font-medium"
-                          }`}>
-                          {link}
-                        </Link>
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-white hover:text-gray-200 focus:outline-none"
+              >
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Open menu</span>
+              </button>
             </div>
           </div>
-        </Container>
+        </div>
       </nav>
+      <div
+        className={`md:hidden fixed inset-y-0 right-0 transform ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        } w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out z-50`}
+      >
+        <div className="p-6">
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <nav className="mt-8">
+            {navItems.map(({ link, path }) => (
+              <a
+                key={path}
+                href={path}
+                className={`block py-2.5 px-4 rounded transition duration-200 ${
+                  pathname === path
+                    ? "bg-blue-50 text-blue-600"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-blue-600"
+                }`}
+              >
+                {link}
+              </a>
+            ))}
+            <button className="mt-4 w-full bg-gradient-to-r from-blue-600 to-red-600 text-white py-2 px-4 rounded-full font-medium hover:from-blue-700 hover:to-red-700 transition-colors duration-200">
+              Get Started
+            </button>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 };
 
 export default Navbar;
+

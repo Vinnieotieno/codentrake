@@ -1,211 +1,233 @@
-'use client'
+import React, { useState, useEffect } from 'react';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Code, Database, Cloud, Users, ChevronDown, Github, Linkedin, Twitter, Facebook } from 'lucide-react';
 
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog"
-import { ChevronDown, Rocket, Eye, Code, Layout, Smartphone, Users, X, Megaphone, ArrowRight } from 'lucide-react'
-import { useInView } from 'react-intersection-observer'
 
-const EnhancedAboutUsHero = () => {
-  const [isStoryOpen, setIsStoryOpen] = useState(false)
-  const [activeService, setActiveService] = useState(null)
+const services = [
+  { icon: <Code className="w-8 h-8" />, name: "Custom Software Development" },
+  { icon: <Database className="w-8 h-8" />, name: "Database Management" },
+  { icon: <Cloud className="w-8 h-8" />, name: "Cloud Solutions" },
+  { icon: <Users className="w-8 h-8" />, name: "IT Consulting" },
+];
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  }
+const socialIcons = [
 
-  const services = [
-    { icon: Code, title: "Software Solutions", description: "Cutting-edge software tailored to your needs" },
-    { icon: Layout, title: "UI/UX Design", description: "Captivating designs that enhance user experience" },
-    { icon: Smartphone, title: "App Development", description: "Robust applications for web and mobile platforms" },
-    { icon: Megaphone, title: "Digital Marketing", description: "Strategic campaigns to boost your online presence" }
-  ]
+  { Icon: Linkedin, name: "LinkedIn", url: "https://linkedin.com" },
+  { Icon: Twitter, name: "Twitter", url: "https://twitter.com" },
+  { Icon: Facebook, name: "Facebook", url: "https://facebook.com" },
+];
 
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+const EnhancedHero = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeService, setActiveService] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const controls = useAnimation();
 
   useEffect(() => {
-    if (inView) {
-      setActiveService(0)
-    }
-  }, [inView])
+    const timer = setTimeout(() => setIsVisible(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
-    if (activeService !== null) {
-      const timer = setTimeout(() => {
-        setActiveService((prev) => (prev + 1) % services.length)
-      }, 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [activeService])
+    const interval = setInterval(() => {
+      setActiveService((prev) => (prev + 1) % services.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    controls.start({
+      rotate: [0, 360],
+      transition: { duration: 20, repeat: Infinity, ease: "linear" },
+    });
+  }, [controls]);
 
   return (
-    <div className="overflow-hidden bg-gradient-to-b from-brandLighter to-white text-brandDark">
-      <div className="relative h-screen bg-cover bg-center bg-no-repeat"
-           style={{backgroundImage: "url('https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1981&q=80')"}}>
-        <div className="absolute inset-0 bg-black bg-opacity-60" />
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4">
-          <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-center"
-            {...fadeIn}
-          >
-            Empowering Your Digital Journey
-          </motion.h1>
-          <motion.p 
-            className="text-xl md:text-2xl lg:text-3xl mb-8 text-center max-w-3xl"
-            {...fadeIn}
-            transition={{ delay: 0.2 }}
-          >
-            Vigilux Corporation: Your Strategic Partner in the Tech Landscape
-          </motion.p>
+    <div className="relative min-h-screen pt-24 mt-12 lg:pt-36 pb-20 overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Ingredients Background */}
+      <div className="absolute inset-0 overflow-hidden opacity-10">
+        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+        <div className="absolute top-1/4 -right-1/4 w-1/2 h-1/2 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-1/4 left-1/3 w-1/2 h-1/2 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="lg:flex mx-auto gap-14 items-center">
           <motion.div
-            {...fadeIn}
-            transition={{ delay: 0.4 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
+            transition={{ duration: 0.6 }}
+            className="lg:w-7/12 w-full mx-auto"
           >
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="text-brandDark border-white hover:bg-white hover:text-brandDark transition-colors duration-300 text-lg px-8 py-3 rounded-full"
-              onClick={() => setIsStoryOpen(true)}
+            <h1 className="font-bold text-4xl lg:text-6xl leading-tight text-blue-900 mb-4">
+              Elevate Your Tech with{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                Codentrake
+              </span>
+            </h1>
+            <h2 className="font-semibold text-xl lg:text-2xl leading-tight my-5 text-indigo-700">
+              Where Innovation Meets Excellence
+            </h2>
+            <p className="my-5 text-lg text-blue-800 max-w-2xl">
+              In the dynamic realm of technology, Codentrake stands as your beacon of innovation. We blend cutting-edge solutions with creative prowess to propel your brand into the future of digital excellence.
+            </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-8 space-y-6"
             >
-              Discover Our Story
-            </Button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-semibold flex items-center text-lg shadow-lg"
+                onClick={() => setShowModal(true)}
+              >
+                Get Started
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </motion.button>
+
+              <div className="flex items-center space-x-4">
+                {socialIcons.map(({ Icon, name, url }) => (
+                  <motion.a
+                    key={name}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="bg-white p-2 rounded-full shadow-md hover:bg-blue-100 transition-colors duration-300"
+                  >
+                    <Icon className="w-6 h-6 text-blue-600" />
+                    <span className="sr-only">{name}</span>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="lg:w-5/12 w-full relative lg:mt-0 mx-auto mt-16"
+          >
+            <motion.div
+              animate={controls}
+              className="absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl shadow-2xl"
+            ></motion.div>
+            <div className="relative z-10 bg-white bg-opacity-90 p-8 rounded-2xl shadow-inner backdrop-blur-sm">
+              <img
+                src="/logo.png?height=128&width=128"
+                alt="Codentrake Logo"
+                className="w-32 h-32 mx-auto mb-6 rounded-full shadow-md"
+              />
+              <h3 className="text-2xl font-bold text-blue-900 mb-4 text-center">Our Expertise</h3>
+              <div className="grid grid-cols-2 gap-4">
+                {services.map((service, index) => (
+                  <motion.div
+                    key={index}
+                    className={`flex items-center space-x-2 p-3 rounded-lg ${
+                      activeService === index ? 'bg-blue-100 shadow-md' : 'bg-gray-100'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {service.icon}
+                    <span className="text-sm font-medium text-blue-800">{service.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
+
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-20 text-center"
         >
-          <ChevronDown className="w-12 h-12 text-white" />
+          <h3 className="text-2xl font-bold text-blue-900 mb-6">Why Choose Codentrake?</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Innovative Solutions", description: "Cutting-edge tech for your unique needs" },
+              { title: "Expert Team", description: "Skilled professionals dedicated to your success" },
+              { title: "Agile Approach", description: "Flexible, adaptive, and results-driven methodology" },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <h4 className="text-xl font-semibold text-indigo-600 mb-2">{item.title}</h4>
+                <p className="text-blue-800">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
+        >
+          <ChevronDown className="w-8 h-8 text-blue-600 animate-bounce" />
         </motion.div>
       </div>
 
-      <div className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-brandDark to-brandMedium bg-clip-text text-transparent">Our Commitment to Excellence</h2>
-            <p className="text-xl md:text-2xl text-brandDark/80 max-w-3xl mx-auto">
-              At Vigilux, we're dedicated to delivering innovative solutions that drive your success in the digital realm.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Card className="h-full bg-gradient-to-br from-brandDark to-brandMedium text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <CardContent className="p-8">
-                  <Rocket className="w-16 h-16 mb-6" />
-                  <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
-                  <p className="text-lg leading-relaxed">
-                    To bridge the gap in the software development industry by providing tailor-made solutions that address unique client challenges, while upholding quality and innovation.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Card className="h-full bg-gradient-to-br from-brandMedium to-brandLighter text-brandDark shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <CardContent className="p-8">
-                  <Eye className="w-16 h-16 mb-6" />
-                  <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
-                  <p className="text-lg leading-relaxed">
-                    To empower businesses with innovative technology solutions that contribute to their growth, sustainability, and success, while building lasting relationships based on trust and reliability.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-
-          <div className="mb-20" ref={ref}>
-            <h3 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-brandDark to-brandMedium bg-clip-text text-transparent">Our Expertise</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                >
-                  <Card className={`h-full transition-all duration-300 ${activeService === index ? 'shadow-lg scale-105' : 'hover:shadow-md hover:scale-102'}`}>
-                    <CardContent className="p-6 text-center">
-                      <service.icon className={`w-12 h-12 mx-auto mb-4 ${activeService === index ? 'text-brandMedium' : 'text-brandDark'}`} />
-                      <h4 className="text-xl font-semibold mb-2">{service.title}</h4>
-                      <p className="text-brandDark/70">{service.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <motion.div
-            className="mt-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <Button 
-              size="lg"
-              className="bg-brandDark hover:bg-brandMedium text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300"
-            >
-              <Users className="mr-2" />
-              Join Our Team
-            </Button>
-          </motion.div>
-        </div>
-      </div>
-
       <AnimatePresence>
-        {isStoryOpen && (
-          <Dialog open={isStoryOpen} onOpenChange={setIsStoryOpen}>
-            <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto bg-gradient-to-br from-brandLighter to-white">
-              <DialogHeader>
-                <DialogTitle className="text-2xl font-bold mb-4 text-brandDark">Our Story</DialogTitle>
-                <DialogDescription>
-                  <p className="text-base mb-4 text-brandDark/80">
-                    Welcome to Vigilux Corporation, your strategic partner in the dynamic and ever-evolving technology landscape. We are committed to delivering top-notch software solutions, cutting-edge UI/UX design, and expert application development, all rooted in a passion for coding and programming excellence.
-                  </p>
-                  <p className="text-base mb-4 text-brandDark/80">
-                    In our mission to bridge the gap in the software development industry, we offer tailor-made solutions that address unique client challenges. Whether you are seeking innovative web development, captivating UI/UX design, or robust application development, Vigilux is here to transform your vision into reality.
-                  </p>
-                  <p className="text-base mb-4 text-brandDark/80">
-                    Our team of skilled professionals is dedicated to upholding quality and innovation, ensuring that your digital presence stands out in the competitive tech landscape. Our expertise in coding and programming encompasses a wide range of languages and frameworks, making us your go-to partner for comprehensive technical solutions.
-                  </p>
-                  <p className="text-base text-brandDark/80">
-                    At Vigilux, we understand the critical role of web development, UI/UX design, and application development in driving progress and success. Our commitment to lasting relationships built on trust and reliability ensures that partnering with Vigilux Corporation is not just a service but a journey towards sustained excellence in the digital realm.
-                  </p>
-                </DialogDescription>
-              </DialogHeader>
-              <DialogClose asChild>
-                <Button variant="outline" className="mt-4">
-                  Close
-                </Button>
-              </DialogClose>
-            </DialogContent>
-          </Dialog>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            onClick={() => setShowModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full m-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-2xl font-bold text-blue-900 mb-4">Get Started with Codentrake</h2>
+              <p className="text-blue-800 mb-6">
+                Ready to elevate your tech game? Fill out the form below and we'll get back to you shortly!
+              </p>
+              <form className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full p-2 border border-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full p-2 border border-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <textarea
+                  placeholder="How can we help you?"
+                  rows="3"
+                  className="w-full p-2 border border-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                ></textarea>
+                <button
+                  type="submit"
+                  className="w-full py-2 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-semibold hover:from-blue-700 hover:to-indigo-700 transition-colors duration-300"
+                >
+                  Submit
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
 
-export default EnhancedAboutUsHero
+export default EnhancedHero;
+

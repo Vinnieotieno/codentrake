@@ -1,103 +1,221 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { plans } from '@/constants/landingpage'
-import { Sprout, Flower, CheckCircle, Palmtree, X } from 'lucide-react'
-import Container from '@/components/Container'
-import { Button } from '@/components/ui/button'
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Sprout, Flower, CheckCircle, Palmtree, Code, Monitor, Quote, Settings } from 'lucide-react';
+import Container from '@/components/Container';
+import { Button } from '@/components/ui/button';
+import Modal from '@/components/ui/Modal';
 
-const PlanCard = ({ plan, isPopular }) => {
-  const [isHovered, setIsHovered] = useState(false)
-
+const PlanCard = ({ plan, onLearnMore }) => {
   return (
     <motion.div
-      className={`${plan.backgroundColor} rounded-lg shadow-lg overflow-hidden transition-all duration-300 ${isHovered ? 'transform scale-105' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      whileHover={{ y: -10 }}
+      className="rounded-lg shadow-lg overflow-hidden transition-all duration-300 bg-white"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
     >
-      {isPopular && (
-        <div className="bg-yellow-400 text-brandDark text-sm font-bold px-4 py-1 absolute top-0 right-0 transform rotate-45 translate-x-12 translate-y-6">
-          Popular
-        </div>
-      )}
       <div className="p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-2xl font-bold">{plan.title}</h2>
-          {plan.title === "Basic" && <Sprout className="text-green-700" size={32} />}
-          {plan.title === "Enterprise" && <Flower className="text-red-700" size={32} />}
-          {plan.title === "Business" && <Palmtree className="text-green-800" size={32} />}
+          {plan.icon}
         </div>
         <p className="text-sm text-gray-600 mb-4">{plan.description}</p>
         <div className="text-3xl font-bold mb-6">{plan.price}</div>
         <hr className="border-t-2 border-gray-200 mb-6" />
-        <h3 className="text-lg font-semibold mb-4">Features</h3>
         <ul className="space-y-2 mb-6">
-  {plan.features.map((feature, index) => (
-    <li key={index} className="flex items-center">
-      {feature.included ? (
-        <CheckCircle className="mr-2 text-green-500" size={16} />
-      ) : (
-        <CheckCircle className="mr-2 text-gray-400" size={16} />
-      )}
-      <span className={feature.included ? '' : 'text-gray-400'}>
-        {feature.name}
-      </span>
-    </li>
-  ))}
-</ul>
-
-        <Button className="w-full bg-brandDark text-white hover:bg-brandMedium transition-colors duration-300">
-          Choose Plan
-        </Button>
+          {plan.details.map((detail, index) => (
+            <li key={index} className="flex items-center">
+              <CheckCircle className="mr-2 text-green-500" size={16} />
+              <span>{detail}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="flex space-x-4">
+          <Button className="w-full bg-brandDark text-white hover:bg-brandMedium transition-colors duration-300">
+            {plan.buttonText}
+          </Button>
+          <Button
+            className="w-full bg-gray-300 text-brandDark hover:bg-gray-400 transition-colors duration-300"
+            onClick={() => onLearnMore(plan)}
+          >
+            Learn More
+          </Button>
+        </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-const Plan = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1
-    }
-  }
+const Testimonials = () => {
+  const testimonials = [
+    {
+      quote: 'The coding classes for kids were fantastic! My child loved the interactive sessions.',
+      author: 'Jane Doe, Parent',
+    },
+    {
+      quote: 'As an aspiring developer, the bootcamp helped me land my first job!',
+      author: 'John Smith, Bootcamp Graduate',
+    },
+    {
+      quote: 'The custom solutions streamlined our workflow significantly.',
+      author: 'Emily White, CEO',
+    },
+  ];
 
   return (
-    <section className="relative py-16 bg-gradient-to-b from-brandLighter to-white text-brandDark overflow-hidden">
+    <section className="py-16 bg-gray-100 text-brandDark">
       <Container>
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
-          <motion.div className="text-center mb-12" variants={itemVariants}>
-            <h2 className="text-3xl font-bold mb-4">Our Plans</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Let's chat about your needs and schedule a call for a personalized quote. We're excited to hear from you!
-            </p>
-          </motion.div>
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
-            {plans.map((plan, idx) => (
-              <motion.div key={idx} variants={itemVariants}>
-                <PlanCard plan={plan} isPopular={idx === 1} />
+          <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+          <motion.div
+            className="flex overflow-x-auto space-x-4 px-6"
+            drag="x"
+            dragConstraints={{ left: -300, right: 0 }}
+            initial={{ x: 100 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {testimonials.map((testimonial, idx) => (
+              <motion.div
+                key={idx}
+                className="min-w-[300px] bg-white p-6 rounded-lg shadow-md flex-none"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Quote size={40} className="mb-4 text-brandDark" />
+                <p className="italic text-gray-600 mb-4">"{testimonial.quote}"</p>
+                <p className="text-right font-bold">{testimonial.author}</p>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
       </Container>
     </section>
-  )
-}
+  );
+};
 
-export default Plan
+const Plan = () => {
+  const [modalData, setModalData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (plan) => {
+    setModalData(plan);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalData(null);
+  };
+
+  const services = [
+    {
+      title: 'Professional Services',
+      description: 'Expert-level consulting to meet your business needs.',
+      price: 'KES 10,000/hour',
+      icon: <Palmtree className="text-blue-600" size={32} />,
+      details: ['Dedicated Support', 'Custom Solutions', '24/7 Availability'],
+      buttonText: 'Learn More',
+    },
+    {
+      title: 'Custom Solutions',
+      description: 'Tailored tech solutions for your organization.',
+      price: 'Contact Us',
+      icon: <Settings className="text-green-600" size={32} />,
+      details: ['Integration Services', 'Advanced Analytics', 'Cloud Deployment'],
+      buttonText: 'Contact Us',
+    },
+  ];
+
+  const codingLessons = [
+    {
+      title: 'Kids Coding Lessons',
+      description: 'Interactive and fun coding classes for kids aged 8-16.',
+      price: 'KES 10,000/month',
+      icon: <Monitor className="text-yellow-600" size={32} />,
+      details: ['Scratch Programming', 'Python Basics', 'Game Development'],
+      buttonText: 'Enroll Now',
+    },
+    {
+      title: 'Adults Coding Bootcamp',
+      description: 'Comprehensive coding bootcamp for aspiring developers.',
+      price: 'KES 20,000/month',
+      icon: <Code className="text-red-600" size={32} />,
+      details: ['Full-Stack Development', 'React and Node.js', 'Project-Based Learning'],
+      buttonText: 'Join Now',
+    },
+  ];
+
+  return (
+    <div className="relative bg-gradient-to-b from-brandLighter to-white text-brandDark overflow-hidden">
+      <Container>
+        {/* Services Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <motion.div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Explore our professional services designed to elevate your business.
+            </p>
+          </motion.div>
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {services.map((service, idx) => (
+              <PlanCard key={idx} plan={service} onLearnMore={openModal} />
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Coding Lessons Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Our Coding Classes</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Learn to code with expert guidance. Choose the best plan for you!
+            </p>
+          </motion.div>
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {codingLessons.map((lesson, idx) => (
+              <PlanCard key={idx} plan={lesson} onLearnMore={openModal} />
+            ))}
+          </motion.div>
+        </motion.div>
+      </Container>
+
+      {/* Testimonials Section */}
+      <Testimonials />
+
+      {/* Modal for Plan Details */}
+      {isModalOpen && modalData && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4">{modalData.title}</h2>
+            <p className="text-gray-600 mb-6">{modalData.description}</p>
+            <ul className="space-y-2">
+              {modalData.details.map((detail, idx) => (
+                <li key={idx} className="flex items-center">
+                  <CheckCircle className="mr-2 text-green-500" size={16} />
+                  {detail}
+                </li>
+              ))}
+            </ul>
+            <Button className="mt-6 bg-brandDark text-white hover:bg-brandMedium">
+              {modalData.buttonText}
+            </Button>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+};
+
+export default Plan;

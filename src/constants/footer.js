@@ -3,9 +3,9 @@ import github from "@/assets/github.png";
 import twitter from "@/assets/twitter.png"
 
 export const footer = {
-  text1: "We're proud members of the Vigilux Corp tech family",
-  text2: "Where tech meets creativity",
-  text3: "Vigilux Corp. 2024. All rights reserved",
+  text1: "We're proud members of the Codentrake Software family",
+  text2: "Bringing Creativity into life",
+  text3: "Codentrake",
 };
 export const socials = [
   {
@@ -13,11 +13,11 @@ export const socials = [
     img: linkedImage,
   },
   {
-    link: "https://github.com/Vigilux-Corp",
+    link: "",
     img: github,
   },
   {
-    link: "https://twitter.com/VigiluxCorp",
+    link: "",
     img: twitter,
   },
 ];
