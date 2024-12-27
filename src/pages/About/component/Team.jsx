@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Container from "@/components/Container";
 import { Card } from "@/components/ui/card";
 import { team } from "@/constants/about";
-import { ChevronDown, ChevronUp, Linkedin, Github, Twitter, Briefcase, Code, Palette } from "lucide-react";
+import { ChevronDown, ChevronUp, Linkedin, Github, Twitter, Briefcase, Code, Palette, Network, Megaphone } from 'lucide-react';
 
 const SocialIcon = ({ platform, link }) => {
   const icons = {
@@ -135,8 +135,8 @@ const Team = () => {
           </p>
         </motion.div>
 
-        <div className="flex justify-center space-x-4 mb-8">
-          {["All", "Developer", "Designer", "Manager"].map((position) => (
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          {["All", "Developer", "Designer", "Manager", "Executive", "Specialist", "Marketer"].map((position) => (
             <motion.button
               key={position}
               className={`px-4 py-2 rounded-full ${
@@ -149,6 +149,9 @@ const Team = () => {
               {position === "Developer" && <Code className="inline-block mr-2" size={16} />}
               {position === "Designer" && <Palette className="inline-block mr-2" size={16} />}
               {position === "Manager" && <Briefcase className="inline-block mr-2" size={16} />}
+              {position === "Executive" && <Briefcase className="inline-block mr-2" size={16} />}
+              {position === "Specialist" && <Network className="inline-block mr-2" size={16} />}
+              {position === "Marketer" && <Megaphone className="inline-block mr-2" size={16} />}
               {position}
             </motion.button>
           ))}
@@ -167,3 +170,4 @@ const Team = () => {
 };
 
 export default Team;
+

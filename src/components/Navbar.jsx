@@ -25,7 +25,10 @@ const TopContactBar = () => {
             <span>info@codentrake.com</span>
           </a>
         </div>
-        <button className="mt-2 sm:mt-0 bg-white text-blue-600 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200">
+        <button className="mt-2 sm:mt-0 bg-white text-blue-600 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 "
+        onClick={() => window.location.href = '/contact'}
+        >
+          
           Request a Quote
         </button>
       </div>

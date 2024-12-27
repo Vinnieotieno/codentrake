@@ -130,4 +130,20 @@ export const team = [
       },
     ],
   },
+  {
+    name: "James Otieno",
+    img: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=200",
+    position: "Operation Executive",
+    desc: "James is a versatile professional serving as our Operation Executive, Network Specialist, and Marketer. With his diverse skill set, he ensures smooth operations, robust networking, and effective marketing strategies for Codentrake.",
+    socials: [
+      {
+        platform: "linkedin",
+        link: "https://www.linkedin.com/in/jamesotieno",
+      },
+      {
+        platform: "twitter",
+        link: "https://twitter.com/jamesotieno",
+      },
+    ],
+  },
 ];

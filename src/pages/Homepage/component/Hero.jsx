@@ -20,7 +20,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="pt-24 lg:pt-36 pb-14 relative overflow-hidden bg-gradient-to-br from-blue-900 via-purple-800 to-blue-900 text-white animate-gradient">
+    <div className="pt-24 lg:pt-36 pb-14 relative overflow-hidden mt-16 bg-gradient-to-br from-blue-900 via-purple-800 to-blue-900 text-white animate-gradient">
       <Container>
         <div className="lg:flex mx-auto gap-14 items-center">
           {/* Left Content */}
